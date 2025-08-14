@@ -14,7 +14,7 @@ sys.path.append(str(ROOT_DIR))
 SUBARU_DECODER = "QC WAFER_LAYOUT 24Dec.csv"
 HALO_DECODER = "HALO_DECODER_NE-rev1_1 logic_coords_annotated.csv"
 
-MONITORED_PATH = ROOT_DIR / "monitored_folder"
+MONITORED_PATH = Path("D:/result/")
 
 GTX_RESULTS_PATH = ROOT_DIR / "results_gtx"
 LEVEE_RESULTS_PATH = ROOT_DIR / "results_dats"
