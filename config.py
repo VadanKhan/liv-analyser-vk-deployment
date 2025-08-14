@@ -20,7 +20,7 @@ GTX_RESULTS_PATH = ROOT_DIR / "results_gtx"
 LEVEE_RESULTS_PATH = ROOT_DIR / "results_dats"
 
 INI_NAME = "PROBEINF.ini"
-INI_LOCATION = ROOT_DIR / "dummy_location" / INI_NAME
+INI_LOCATION = Path("N:/XFER/") / INI_NAME
 
 LEVEE_FOLDER = ROOT_DIR / "levee_folder"
 LEVEE_EXE_PATH = ROOT_DIR / "levee_folder/LIVDisp.exe"
