@@ -1,0 +1,120 @@
+[2025-08-13 14:11:30] Detected new file: LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX.csv
+
+Waiting for LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX.csv to be ready... (0s elapsed)
+✅ File LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX.csv is now ready to read.
+
+Detected Test Type: Baseline
+Fetched Info (from PROBEINF.ini): Wafer Code - QCI3N, Machine Code - LIV_54
+
+Non-Halo Wafer Detected, Using Subaru Decoder
+
+⚙️ Baseline test or other, using default processing function
+
+Processing Initiated:
+🔼 Processed 1 lasers in this chunk. Total processed: 1
+🔼 Processed 1 lasers in this chunk. Total processed: 2
+🔼 Processed 1 lasers in this chunk. Total processed: 3
+🔼 Processed 1 lasers in this chunk. Total processed: 4
+🔼 Processed 1 lasers in this chunk. Total processed: 5
+🔼 Processed 1 lasers in this chunk. Total processed: 6
+🔼 Processed 1 lasers in this chunk. Total processed: 7
+🔼 Processed 1 lasers in this chunk. Total processed: 8
+🔼 Processed 1 lasers in this chunk. Total processed: 9
+🔼 Processed 1 lasers in this chunk. Total processed: 10
+🔼 Processed 1 lasers in this chunk. Total processed: 11
+🔼 Processed 1 lasers in this chunk. Total processed: 12
+🔼 Processed 1 lasers in this chunk. Total processed: 13
+🔼 Processed 1 lasers in this chunk. Total processed: 14
+🔼 Processed 1 lasers in this chunk. Total processed: 15
+🔼 Processed 1 lasers in this chunk. Total processed: 16
+🔼 Processed 1 lasers in this chunk. Total processed: 17
+🔼 Processed 1 lasers in this chunk. Total processed: 18
+🔼 Processed 1 lasers in this chunk. Total processed: 19
+🔼 Processed 1 lasers in this chunk. Total processed: 20
+🔼 Processed 1 lasers in this chunk. Total processed: 21
+🔼 Processed 1 lasers in this chunk. Total processed: 22
+🔼 Processed 1 lasers in this chunk. Total processed: 23
+🔼 Processed 1 lasers in this chunk. Total processed: 24
+🔼 Processed 1 lasers in this chunk. Total processed: 25
+🔼 Processed 1 lasers in this chunk. Total processed: 26
+🔼 Processed 1 lasers in this chunk. Total processed: 27
+🔼 Processed 1 lasers in this chunk. Total processed: 28
+🔼 Processed 1 lasers in this chunk. Total processed: 29
+🔼 Processed 1 lasers in this chunk. Total processed: 30
+🔼 Processed 1 lasers in this chunk. Total processed: 31
+🔼 Processed 1 lasers in this chunk. Total processed: 32
+🔼 Processed 1 lasers in this chunk. Total processed: 33
+🔼 Processed 1 lasers in this chunk. Total processed: 34
+Chunk 35: No lasers matched the sampling condition.
+
+✓ All chunks transformed for QCI3N
+Data Exporting to: c:\Users\762093\Documents\deployment-environment\C\liv-analyser-vk\results\LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX_processed.csv
+🔼 Final export of 34 rows. Total exported: 34
+🔼 Final .dat export of 340 rows.
+✓ Device summary exported for QCI3N
+
+Final Recipe Detected, Engaging Levee Protocol:
+🔀 Moved QCI3N_20250813141130.dat → c:\Users\762093\Documents\deployment-environment\C\liv-analyser-vk\levee_folder\QCI3N_20250813141130.dat
+❌ Failed to trigger Levee executable: [WinError 2] The system cannot find the file specified
+
+✅ Renamed file to: LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_RAW20250813141143.csv
+[2025-08-13 14:11:30] ✅ Renamed to: LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_RAW20250813141143.csv
+
+
+
+========== Wafer: QCI3N ==========
+[2025-08-13 14:11:30] ✅ Processed: LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX.csv (Wafer: QCI3N)
+[2025-08-13 14:12:39] Detected new file: LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX.csv
+
+Waiting for LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX.csv to be ready... (0s elapsed)
+✅ File LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX.csv is now ready to read.
+
+Detected Test Type: Baseline
+Fetched Info (from PROBEINF.ini): Wafer Code - QCI3N, Machine Code - LIV_54
+
+Non-Halo Wafer Detected, Using Subaru Decoder
+
+⚙️ Baseline test or other, using default processing function
+
+Processing Initiated:
+🔼 Processed 1000 devices. Total exported: 1000
+🔼 Processed 1000 devices. Total exported: 2000
+🔼 Processed 1000 devices. Total exported: 3000
+🔼 Processed 1000 devices. Total exported: 4000
+🔼 Processed 1000 devices. Total exported: 5000
+🔼 Processed 1000 devices. Total exported: 6000
+[2025-08-13 14:39:00] Detected new file: LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX.csv
+
+Waiting for LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX.csv to be ready... (0s elapsed)
+✅ File LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX.csv is now ready to read.
+
+Detected Test Type: Baseline
+Fetched Info (from PROBEINF.ini): Wafer Code - QCI3N, Machine Code - LIV_54
+
+Non-Halo Wafer Detected, Using Subaru Decoder
+
+⚙️ Baseline test or other, using default processing function
+
+Processing Initiated:
+🔼 Processed 1000 devices. Total exported: 1000
+🔼 Processed 1000 devices. Total exported: 2000
+🔼 Processed 1000 devices. Total exported: 3000
+🔼 Processed 1000 devices. Total exported: 4000
+🔼 Processed 1000 devices. Total exported: 5000
+[2025-08-13 14:44:22] Detected new file: LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX.csv
+
+Waiting for LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX.csv to be ready... (0s elapsed)
+✅ File LIV_54_QCI3N_DNS-LIVTKCOD_LIVTK-DNS_STX.csv is now ready to read.
+
+Detected Test Type: Baseline
+Fetched Info (from PROBEINF.ini): Wafer Code - QCI3N, Machine Code - LIV_54
+
+Non-Halo Wafer Detected, Using Subaru Decoder
+
+⚙️ Baseline test or other, using default processing function
+
+Processing Initiated:
+🔼 Processed 1000 devices. Total exported: 1000
+🔼 Processed 1000 devices. Total exported: 2000
+🔼 Processed 1000 devices. Total exported: 3000
+🔼 Processed 1000 devices. Total exported: 4000

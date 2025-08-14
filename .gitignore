@@ -1,0 +1,10 @@
+.venv/
+/stst_urls.py
+decoders/
+exports/
+validation/
+results/
+results_dats/
+results_gtx/
+monitored_folder/
+levee_folder/
