@@ -28,4 +28,4 @@ LEVEE_EXE_PATH = ROOT_DIR / "levee_folder/LIVDisp.exe"
 LOG_NAME = "detection_log.txt"
 LOG_PATH = ROOT_DIR / LOG_NAME
 
-VERSION = 1.0
+VERSION = 1.1

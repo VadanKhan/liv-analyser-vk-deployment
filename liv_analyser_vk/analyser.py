@@ -1213,8 +1213,9 @@ def stream_process_lasing_parameters(
     summary_output_path,
     dat_output_path,
     ini_data,
+    test_type,
     decoder_path,
-    sampling_freq=1,
+    sampling_freq=10000,
     chunksize=10000,
     export_buffer=1000,
 ):
@@ -1389,17 +1390,23 @@ def stream_process_lasing_parameters(
                     ]
                 )
 
+                # Map test types to suffixes
+                suffix_map = {"Baseline": "_BL", "Rollover": "_COD70", "SPD": "_COD250"}
+
+                # Pick suffix based on test_type, default to _BL if unknown
+                suffix = suffix_map.get(test_type, "_BL")
+
                 melted_entries = [
-                    ("ITH_BL", ith),
-                    ("SE_BL", slope_eff),
-                    ("RS_BL", series_r),
-                    ("PW_BL", peak_wl),
-                    ("ISPD_BL", spd_current),
-                    ("KNK1_BL", kink_current),
-                    ("KNKPPD_BL", KNKPPD_BL),
-                    ("KNKMM_BL", KNKKMM_BL),
-                    ("ILK_BL", leakage_current),
-                    ("RV_BL", reverse_voltage),
+                    (f"ITH{suffix}", ith),
+                    (f"SE{suffix}", slope_eff),
+                    (f"RS{suffix}", series_r),
+                    (f"PW{suffix}", peak_wl),
+                    (f"ISPD{suffix}", spd_current),
+                    (f"KNK1{suffix}", kink_current),
+                    (f"KNKPPD{suffix}", KNKPPD_BL),
+                    (f"KNKMM{suffix}", KNKKMM_BL),
+                    (f"ILK{suffix}", leakage_current),
+                    (f"RV{suffix}", reverse_voltage),
                 ]
 
                 for param, val in melted_entries:
@@ -1480,6 +1487,7 @@ def stream_process_lasing_parameters_cod(
     summary_output_path,
     dat_output_path,
     ini_data,
+    test_type,
     decoder_path,
     sampling_freq=10000,
     chunksize=10000,
@@ -1656,17 +1664,23 @@ def stream_process_lasing_parameters_cod(
                     ]
                 )
 
+                # Map test types to suffixes
+                suffix_map = {"Baseline": "_BL", "Rollover": "_COD70", "SPD": "_COD250"}
+
+                # Pick suffix based on test_type, default to _BL if unknown
+                suffix = suffix_map.get(test_type, "_BL")
+
                 melted_entries = [
-                    ("ITH_BL", ith),
-                    ("SE_BL", slope_eff),
-                    ("RS_BL", series_r),
-                    ("PW_BL", peak_wl),
-                    ("ISPD_BL", spd_current),
-                    ("KNK1_BL", kink_current),
-                    ("KNKPPD_BL", KNKPPD_BL),
-                    ("KNKMM_BL", KNKKMM_BL),
-                    ("ILK_BL", leakage_current),
-                    ("RV_BL", reverse_voltage),
+                    (f"ITH{suffix}", ith),
+                    (f"SE{suffix}", slope_eff),
+                    (f"RS{suffix}", series_r),
+                    (f"PW{suffix}", peak_wl),
+                    (f"ISPD{suffix}", spd_current),
+                    (f"KNK1{suffix}", kink_current),
+                    (f"KNKPPD{suffix}", KNKPPD_BL),
+                    (f"KNKMM{suffix}", KNKKMM_BL),
+                    (f"ILK{suffix}", leakage_current),
+                    (f"RV{suffix}", reverse_voltage),
                 ]
 
                 for param, val in melted_entries:
@@ -1923,21 +1937,38 @@ def wait_for_file_to_appear_and_be_readable(filepath, max_wait=300, delay=1):
     return False
 
 
-def extract_test_type_from_file(file_path):
+def extract_parts_and_test_type_from_filename(file_path):
     file = Path(file_path)
 
-    # Check if file is a CSV, starts with "LIV_", and ends with "_STX" in the stem
-    if file.name.startswith("LIV_") and file.suffix == ".csv" and file.stem.upper().endswith("_STX"):
-        parts = file.name.split("_")
-        if len(parts) >= 3:
-            if "COD250" in file.name.upper():
-                return "SPD"
-            elif "COD70" in file.name.upper():
-                return "Rollover"
-            else:
-                return "Baseline"
+    # Require file to be CSV and stem to end with _STX
+    if not (file.suffix.lower() == ".csv" and file.stem.upper().endswith("_STX")):
+        return None
 
-    return None
+    parts = file.stem.split("_")
+    if len(parts) < 5:  # need at least tool_name(2 parts) + wafer_id + prober_recipe + tester_recipe
+        return None
+
+    tool_name = f"{parts[0]}_{parts[1]}"  # combine with underscore
+    wafer_id = parts[2]  # e.g. QCHU5
+    prober_recipe = parts[3]  # e.g. LIVBLTKCOD
+    tester_recipe = parts[4]  # e.g. COD70 or LIV-BL-TK
+
+    # Classify based on tester_recipe
+    tester_upper = tester_recipe.upper()
+    if "COD250" in tester_upper:
+        test_type = "SPD"
+    elif "COD70" in tester_upper:
+        test_type = "Rollover"
+    else:
+        test_type = "Baseline"
+
+    return {
+        "tool_name": tool_name,
+        "wafer_id": wafer_id,
+        "prober_recipe": prober_recipe,
+        "tester_recipe": tester_recipe,
+        "test_type": test_type,
+    }
 
 
 # 🔁 Processing triggering
@@ -1965,6 +1996,7 @@ def initialise_lasing_processing(file_path, ini_dict, test_type, gtx_output_path
                 summary_output_path=gtx_output_path,
                 dat_output_path=levee_output_path,
                 ini_data=ini_dict,
+                test_type=test_type,
                 decoder_path=decoder_path,
                 sampling_freq=1,
             )
@@ -1975,6 +2007,7 @@ def initialise_lasing_processing(file_path, ini_dict, test_type, gtx_output_path
                 summary_output_path=gtx_output_path,
                 dat_output_path=levee_output_path,
                 ini_data=ini_dict,
+                test_type=test_type,
                 decoder_path=decoder_path,
                 sampling_freq=1,
             )
@@ -1985,6 +2018,7 @@ def initialise_lasing_processing(file_path, ini_dict, test_type, gtx_output_path
                 summary_output_path=gtx_output_path,
                 dat_output_path=levee_output_path,
                 ini_data=ini_dict,
+                test_type=test_type,
                 decoder_path=decoder_path,
             )
 
@@ -2031,13 +2065,17 @@ class WaferFileHandler(FileSystemEventHandler):
                 tqdm.write(f"[{detection_time}] Detected new file: {file_path.name}\n")
 
                 if not wait_for_file_to_appear_and_be_readable(file_path):
-                    message = f"{file_path.name} did not become readable."
+                    message = f"[{detection_time}] ❌ {file_path.name} did not become readable."
                     tqdm.write(message)
-                    with open(LOG_PATH, "a", encoding="utf-8") as log_file:
-                        log_file.write(f"[{detection_time}] ❌ {message}\n")
                     return
 
-                test_type = extract_test_type_from_file(file_path)
+                filename_data = extract_parts_and_test_type_from_filename(file_path)
+                if not filename_data:
+                    tqdm.write(f"[{detection_time}] ❌ Could not parse filename into parts: {file_path.name}")
+                    print_watcher_banner()
+                    return
+                test_type = filename_data["test_type"]
+                tester_recipe = filename_data["tester_recipe"]
                 tqdm.write(f"\nDetected Test Type: {test_type}")
 
                 if test_type not in ("Rollover", "Baseline", "SPD"):
@@ -2059,7 +2097,7 @@ class WaferFileHandler(FileSystemEventHandler):
                 )  # unpacks into rest of code
 
                 # ----------------- case statement for last recipe --> shunting + triggering levee ----------------- #
-                if ini_dict["INI_MEAS_TYPE"] == ini_dict["INI_FINAL_RECIPE"]:
+                if tester_recipe == ini_dict["INI_FINAL_RECIPE"]:
                     tqdm.write(f"\nFinal Recipe Detected, Engaging Levee Protocol:")
 
                     # Find all .dat files in RESULTS_PATH with matching wafer_code prefix
